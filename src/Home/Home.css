@@ -1,0 +1,25 @@
+.fuente{
+    color: #0033a0;
+    font-style: italic;
+}
+
+.header2{
+    background-color: rgb(120,190,32);
+    font-size: 2rem;
+    font-weight: 600;
+    color: white;
+}
+
+.titulo{
+    color: #0033a0;
+    font-style: italic;
+}
+
+.card{
+    background-color: #eaecee;
+}
+
+.card:hover{
+    padding: 0.1rem;
+    text-shadow: 0.1rem 0.3rem 1rem black;
+    }
