@@ -23,20 +23,28 @@ export function Formulario(){
 
         //buscamos coincidencias entre lo que lo que escribe el usuario en el formulario y el json de la BD
         let busqueda = usuarios.find(function(usuario){
-            return(usuario.nit==verNit)
+            return(usuario.nit==verNit && usuario.contraseña==verContraseña)
         })
         if (busqueda==undefined) {
             //acá va el error
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: "Something went wrong!",
-                footer: '<a href="#">Why do I have this issue?</a>'
+                text: "NIT o Contraseña errónea!",
+                footer: '<a href="#"> Olvidé mi contraseña </a>'
               });
             
         } else {
             //voy a enrutar otro componente (¿Cómo lanzo un componente desde otro otro?)
-        enrutador("/home") 
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Ha ingresado satisfactoriamente",
+                showConfirmButton: false,
+                timer: 1500
+              });
+
+        enrutador("/home",{state:{usuarios:busqueda}})
         }
         
         

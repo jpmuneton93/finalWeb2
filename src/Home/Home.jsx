@@ -2,9 +2,15 @@ import "./Home.css";
 
 import usuarios from "../Utils/usuarios.json"
 
+import { useLocation } from "react-router-dom";
+
 export function Home() {
 
-    console.log(usuarios[0])
+  let location=useLocation();
+  let usuarios=location.state?.usuarios;
+
+    console.log(usuarios)
+    console.log(usuarios.lenght)
   
   
       return (  //ZONA DE RENDERIZADO
@@ -37,17 +43,25 @@ export function Home() {
   
               <div className="col-12 col-md-6">
                   <h3 className="fuente">Empresa</h3>
-                  <h2 className="text-muted">  {usuarios[0].empresa} </h2>
-                  <h4 className="text-muted">  {usuarios[0].nit} </h4>
+                  <h2 className="text-muted">  {usuarios.empresa} </h2>
+                  <h4 className="text-muted">  {usuarios.nit} </h4>
   
                 {/* alt + z para organizar el texto */}
-                <p>
+                <p className="text-muted">
                   <hr />
-                  ACTIVIDAD ECONOMICA:
+                  <b>ACTIVIDAD ECONOMICA:</b>
                   <br />
-                  {usuarios[0].actividadEconomica}
+                  {usuarios.actividadEconomica}
                 </p>
+
+                <div className="container mt-5 ">
+                  <img src="../../src/assets/dibujoriesgo.jpg" alt="logo" className="img-fluid" width={200} />
+                </div>
+
               </div>
+
+              
+
   
               <div className="col-12 col-md-6">
 
@@ -57,7 +71,7 @@ export function Home() {
                       </div>
   
                       <div className="col-12 col-md-10 mt-3">
-                        <p><b>Sector Económico:</b> {usuarios[0].sectorEconomico} </p>
+                        <p><b>Sector Económico:</b> {usuarios.sectorEconomico} </p>
                         <hr />                        
                       </div>
 
@@ -66,7 +80,7 @@ export function Home() {
                       </div>
   
                       <div className="col-12 col-md-10 mt-3">
-                        <p><b>Grupo Económico:</b> {usuarios[0].grupoEconomico} </p>
+                        <p><b>Grupo Económico:</b> {usuarios.grupoEconomico} </p>
                         <hr />                        
                       </div>
 
@@ -75,7 +89,7 @@ export function Home() {
                       </div>
   
                       <div className="col-12 col-md-10 mt-3">
-                        <p><b>Afiliados:</b> {usuarios[0].afiliados} </p>
+                        <p><b>Afiliados:</b> {usuarios.afiliados} </p>
                         <hr />                        
                       </div>
 
@@ -84,7 +98,7 @@ export function Home() {
                       </div>
   
                       <div className="col-12 col-md-10 mt-3">
-                        <p><b>Direccion Principal:</b> {usuarios[0].direccion} </p>
+                        <p><b>Direccion Principal:</b> {usuarios.direccion} </p>
                         <hr />                        
                       </div>
 
@@ -93,7 +107,7 @@ export function Home() {
                       </div>
   
                       <div className="col-12 col-md-10 mt-3">
-                        <p><b>Municipio:</b> {usuarios[0].municipio} </p>
+                        <p><b>Municipio:</b> {usuarios.municipio} </p>
                         <hr />                        
                       </div>
 
@@ -102,7 +116,7 @@ export function Home() {
                       </div>
   
                       <div className="col-12 col-md-10 mt-3">
-                        <p><b>Departamento:</b> {usuarios[0].departamento} </p>                         
+                        <p><b>Departamento:</b> {usuarios.departamento} </p>                         
                         <hr />                        
                       </div>
                   </div>
@@ -113,11 +127,11 @@ export function Home() {
   
           <hr />
   
-          <section className="container my-5">
+          <section className="container my-5 d-flex justify-content-center">
             <div className="row">
-              <div className="col-12 col-md-10">
-                <h4> {usuarios[0].empresa}, </h4>
-                <h5> <i class="bi bi-exclamation-triangle-fill"></i>  A continuación se relacionan los accidentes de trabajo que ha tenido durante este año:</h5>
+              <div className="col-12 col-md-12">
+                <h4> <i class="bi bi-exclamation-triangle-fill"></i> {usuarios.empresa}, </h4>
+                <h5>  A continuación se relacionan los accidentes de trabajo que ha tenido durante este año:</h5>
               </div>
 
               <select class="form-select" aria-label="Default select example">
@@ -129,15 +143,12 @@ export function Home() {
   
             </div>
           </section>
-  
-          <hr />
-
-      
+        
   
           <section className="container my-4">
             <div className="row row-cols-1 row-cols-md-3 g-3 ">
               {
-                usuarios[0].accidentes.map(function(AT){
+                usuarios.accidentes.map(function(AT){
                   return (
                     <div className="col">
                       <div className="card h-100 shadow px-2 pt-3">
